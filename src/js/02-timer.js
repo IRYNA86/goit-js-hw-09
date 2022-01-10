@@ -1,6 +1,7 @@
 import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
 const buttonStart = document.querySelector('button[data-start]');
+const fieldForm = document.getElementById('datetime-picker');
 const fieldDays = document.querySelector('[data-days]');
 const fieldHours = document.querySelector('[data-hours]');
 const fieldMinutes = document.querySelector('[data-minutes]');
@@ -20,11 +21,13 @@ const options = {
             window.alert('Пожалуйста выберите будущую дату');
             return;
         }
-        buttonStart.disabled = false;
+      buttonStart.disabled = false;
+      fieldForm.disabled = false;
       },
 };
 flatpickr('input[type="text"]', options);
 buttonStart.disabled = true;
+fieldForm.disabled = false;
 buttonStart.addEventListener('click', () => {
     timer.end();
 });
@@ -44,9 +47,11 @@ const timer = {
             fieldMinutes.textContent = `${minutes}`;
             fieldSeconds.textContent = `${seconds}`;
             console.log(`${days}, ${hours}, ${minutes}, ${seconds}`);
-        }, 1000);
+            }, 1000);
+      buttonStart.disabled = true;
+      fieldForm.disabled = true;
+  }
     }
-}
 
 function pad(value) {
     return String(value).padStart(2, '0');

@@ -19,7 +19,7 @@ function onChangeColorBody() {
 buttonStart.addEventListener('click', () => {
   onDisabled = setTimeout(() => {
     buttonStart.setAttribute("disabled", "disabled")
-  }, 1000);
+  }, 0);
 });
 buttonStop.addEventListener('click', () => {
     clearInterval(onClick);
